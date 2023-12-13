@@ -44,18 +44,26 @@ function leerDatosCurso(curso) {
 }
 
 //Mostramos los datos del carrito de compras en el HTML <tr></tr>
-  //Creamos la funcion y recorremos el arreglo para ir iterando y asi agregar la información
+  //Creamos la funcion.
   function carritoHtml() {
-
-    //Eliminar HTML
+    
+    //Eliminar-Limpiar HTML
     limpiarHTML();
-
+    
+    //Recorremos el arreglo para ir iterando y asi agregar la información
     articulosCarrito.forEach( curso => {
+      //Utilizamos destructuring  para crear la variable y extraer su valor
+      const { imagen, titulo, precio, cantidad} = curso;
+
       const row = document.createElement('tr');
-      row.innerHTML = `
-        <td>
-          ${curso.titulo}
-        </td>`;
+        row.innerHTML = `
+          <td>
+            <img src="${imagen}" width="100"
+          </td>
+          <td>${titulo}</td>
+          <td>${precio}</td>
+          <td>${cantidad}</td>
+        `;
 
     // Agrega el HTML al carrito <tbody></tbody>
       contenedorCarrito.appendChild(row);

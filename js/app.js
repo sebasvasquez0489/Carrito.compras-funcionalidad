@@ -10,6 +10,9 @@ cargarEventListeners()
 function cargarEventListeners() {
   // Cuando agregas un curso presionando "Agregar al carrito"
   listaCursos.addEventListener('click', agregarCurso);
+
+  //Eliminar cursos
+  carrito.addEventListener('click', eliminarCurso);
 };
 
 // Funciones
@@ -21,6 +24,18 @@ function agregarCurso(e) {
     leerDatosCurso(cursoSeleccionado);
   };
 };
+
+//Eliminar cun curso del carrito
+function eliminarCurso(e) {
+  if(e.target.classList.contains('borrar-curso')) {
+    const cursoId = e.target.getAttribute('data-id');
+
+    //Eliminar del arreglo de articulosCarrito por data-id
+    articulosCarrito = articulosCarrito.filter( curso => curso.id !== cursoId);
+
+    carritoHtml();//iterar sobre el carrito y mostrar su HTML
+  }
+}
 
 //Leer contenido del HTML y extraer información.
 function leerDatosCurso(curso) {
@@ -70,7 +85,7 @@ function leerDatosCurso(curso) {
     articulosCarrito.forEach( curso => {
 
       //Utilizamos destructuring  para crear la variable y extraer su valor
-      const { imagen, titulo, precio, cantidad, } = curso;
+      const { imagen, titulo, precio, cantidad, id } = curso;
 
       const row = document.createElement('tr');
         row.innerHTML = `
@@ -80,6 +95,9 @@ function leerDatosCurso(curso) {
           <td>${titulo}</td>
           <td>${precio}</td>
           <td>${cantidad}</td>
+          <td>
+            <a href="#" class="borrar-curso" data-id="${id}"> X </a>
+          </td>
         `;
 
     // Agrega el HTML al carrito <tbody></tbody>

@@ -3,6 +3,7 @@ const carrito = document.querySelector('#carrito');
 const contenedorCarrito = document.querySelector('#lista-carrito tbody');
 const vaciarcarritoBtn = document.querySelector('#vaciar-carrito');
 const listaCursos = document.querySelector('#lista-cursos');
+let articulosCarrito = [];
 
 cargarEventListeners()
 // Registrar los eventos
@@ -33,5 +34,42 @@ function leerDatosCurso(curso) {
     id: curso.querySelector('a').getAttribute('data-id'),
     cantidad: 1,
   }
-  console.log(infoCurso);
+  //Agrega elementos al carrito de compras
+    //--Utilizamos el spreade operator para traer una copia el arreglo--//
+  articulosCarrito = [...articulosCarrito, infoCurso];
+
+  console.log(articulosCarrito);
+
+  carritoHtml();
+}
+
+//Mostramos los datos del carrito de compras en el HTML <tr></tr>
+  //Creamos la funcion y recorremos el arreglo para ir iterando y asi agregar la información
+  function carritoHtml() {
+
+    //Eliminar HTML
+    limpiarHTML();
+
+    articulosCarrito.forEach( curso => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>
+          ${curso.titulo}
+        </td>`;
+
+    // Agrega el HTML al carrito <tbody></tbody>
+      contenedorCarrito.appendChild(row);
+    })
+  }
+
+  //Elimina los cursos Agregados al <tbody></tbody> para limpiar el Html y evitar los duplicados.
+function limpiarHTML() {
+    //--Forma lenta de limpiar el html--//
+      //contenedorCarrito.innerHTML = '';
+
+//--Forma mas rapida y de mejor performance de limpiar el HTML--//
+  //Validamos que se cumpla la condición y que si contiene al menos un elemento (.firstChild) se ejecute este codigo hasta limpiar el HTML, si queda limpia se deja de ejecutar.
+  while(contenedorCarrito.firstChild) {
+    contenedorCarrito.removeChild(contenedorCarrito.firstChild)
+  }
 }

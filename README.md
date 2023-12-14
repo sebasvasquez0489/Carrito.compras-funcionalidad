@@ -15,6 +15,7 @@ En este proyecto se realizó la codificación de las funcionalidades de un carri
 2. Terminal de comandos GitBash.
 
 ------------
+
 ##### Tener en cuenta
 ```
 La maquetación y estilos (HTML-CSS) fueron extraídas de un proyecto previamente ya estructurado desde el curso Javascript Moderno de la plataforma digital Udemy.

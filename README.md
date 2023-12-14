@@ -10,6 +10,7 @@ En este proyecto se realizó la codificación de las funcionalidades de un carri
 - Arrays/ArraysMethods
 - DOM
 - Eventos
+
 #### Herramientas utilizadas:
 1. Editor de código Visual Studio Code.
 2. Terminal de comandos GitBash.
